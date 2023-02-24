@@ -39,10 +39,10 @@ macro "Normalize to ROI" {
     Dialog.create("Select Save Format"); // The default format is TIFF
     Dialog.addChoice("Which image format do you want to save results as?", newArray("TIFF", "JPEG", "GIF", "BMP", "PNG", "PGM"), "TIFF");
     Dialog.show();
-format = Dialog.getChoice();
+    format = Dialog.getChoice();
 
-    // Assign a target mean intensity value of pixels in the ROI, noted as I(target) or ìcoefî (default:10,000)    
-coef = getNumber("What number do you want to represent the mean?", 10000); 
+    // Assign a target mean intensity value of pixels in the ROI, noted as I(target) or ‚Äúcoef‚Äù (default:10,000)    
+    coef = getNumber("What number do you want to represent the mean?", 10000); 
 
     open(paths);
     title=getTitle();
@@ -54,16 +54,16 @@ coef = getNumber("What number do you want to represent the mean?", 10000);
     } else {
         run("ROI Manager...");
     }
-selectImage(id);
+    selectImage(id);
 
-    // Use the built-in function ìaddî to add the newly generated ROI for mean-intensity calculation
+    // Use the built-in function ‚Äúadd‚Äù to add the newly generated ROI for mean-intensity calculation
     roiManager("add"); 
     close();
     setBatchMode(true);
 
 
-// For loop to: 
-// a) calculate the mean intensity within an ROI in an image, noted as I(measured) or ìmean
+    // For loop to: 
+    // a) calculate the mean intensity within an ROI in an image, noted as I(measured) or ‚Äúmean
     // b) calculate a ratio = I(target) / I(measured)
     // c) multiply the intensities of all pixels in the image by the ratio
     // This process is repeated for all images in the image stack
